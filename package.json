@@ -1,0 +1,23 @@
+{
+  "name": "landing-ruleruler",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^5.3.1",
+    "animejs": "^3.2.0",
+    "file-loader": "^6.0.0",
+    "next": "9.3.5",
+    "next-images": "^1.4.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-svg": "^11.0.20",
+    "sass": "^1.26.5",
+    "styled-components": "^5.1.0",
+    "webpack": "^4.43.0"
+  }
+}
