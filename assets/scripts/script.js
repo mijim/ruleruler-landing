@@ -302,14 +302,14 @@ export const executeScript = () => {
   .nav-title-main {
       color: #FFFFFF;
       font-weight: 900;
-      font-size: 8px;
-      line-height: 16px;
+      font-size: 12px;
+      line-height: 16px; 
       margin-right: 4px;
-      margin-left: 3px;
+      margin-left: 4px;
   }
 
   .nav-title-sub {
-      font-size: 8px;
+      font-size: 10px;
       line-height: 16px;
       color: #FFFFFF;
       opacity: 0.4;
@@ -321,6 +321,16 @@ export const executeScript = () => {
       border-radius: 10px;
       width: 500px;
       height: 70px;
+  }
+
+  .nav-title-tool {
+    margin-left: 32px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    margin-right: 4px;
   }
 
   .nav-inside-container-sub {
@@ -640,6 +650,12 @@ export const executeScript = () => {
                 </div>
                 <div class="nav-title-sub">
                     for measures lovers.
+                </div>
+                <div class="nav-title-tool">
+                    Press ⌘+C
+                </div>
+                <div class="nav-title-sub">
+                    for copy css
                 </div>
             </div>
             <div class="nav-flex-item">
@@ -1338,14 +1354,32 @@ export const executeScript = () => {
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
+    showCopiedAdvice();
 
     try {
       var successful = document.execCommand("copy");
-      alert("Font styles copied!");
     } catch (err) { }
 
     document.body.removeChild(textArea);
   }
+
+  let showCopiedAdviceTimeout;
+  function showCopiedAdvice() {
+    const tools = document.getElementsByClassName('nav-title-tool');
+    const titleSub = document.getElementsByClassName('nav-title-sub');
+    if (tools[0] && titleSub[1]) {
+      const previousText = tools[0].innerHTML;
+      const previousTitle = titleSub[1].innerHTML;
+      tools[0].innerHTML = '👍 Copiado con éxito';
+      titleSub[1].innerHTML = '';
+      clearTimeout(showCopiedAdviceTimeout);
+      showCopiedAdviceTimeout = setTimeout(() => {
+        tools[0].innerHTML = previousText;
+        titleSub[1].innerHTML = previousTitle;
+      }, 3000);
+    }
+  }
+
 
   function elementInViewport(el) {
     var top = el.offsetTop;
