@@ -174,9 +174,9 @@ export const executeScript = () => {
       z-index: 999999999999999999;
       left: 35px;
       top: 507.5px;
+      height: 140px;
       border-radius: 3px;
-      height: 120px;
-      width: 610px;
+      width: 550px;
       /* backdrop-filter: saturate(180%) blur(20px); */
       animation: fade-in 0.8s;
       transition: transform 0.1s ease-in-out;
