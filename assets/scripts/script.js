@@ -306,6 +306,7 @@ export const executeScript = () => {
       line-height: 16px; 
       margin-right: 4px;
       margin-left: 4px;
+      letter-spacing: 0.04em;
   }
 
   .nav-title-sub {
