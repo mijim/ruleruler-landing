@@ -156,8 +156,12 @@ const MainContainer = styled.div`
                 line-height: 14px;
             }
             .bottom_container__logo {
+                position: absolute;
+                right: 0;
+                top: 292px;
+                z-index: 30;
                 svg {
-                    opacity: 0.2;
+                    width: 30%;
 
                 }
             }
@@ -270,6 +274,7 @@ const MainContainer = styled.div`
             padding-left: 10%;
             padding-right: 10%;
             margin-top: -50px;
+            padding-top: 60px;
             &__top {
                 justify-content: flex-end;
                 -webkit-text-stroke: 1px #17191C;

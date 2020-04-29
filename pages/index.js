@@ -172,7 +172,8 @@ export default function Home() {
               </div>
             </div>
             <div className="bottom_container__logo">
-              {images.lightLogo()}
+              <img src={'/static/light-logo.svg'} />
+              {/* {images.lightLogo()} */}
             </div>
           </div>
         </div>
@@ -212,12 +213,6 @@ export default function Home() {
 
 
           <div className="demo-content">
-            <div className="demo-content__top">
-              {images.blacKLogo()}
-            </div>
-            <div className="demo-content__top">
-              {images.blacKLogo()}
-            </div>
             <div className="demo-subtitle">
               {'From Wikipedia, the free encyclopedia'}
             </div>

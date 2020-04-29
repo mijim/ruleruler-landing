@@ -285,7 +285,7 @@ export const executeScript = () => {
       padding: 8px 16px 8px 16px;
       width: fit-content;
       position: fixed;
-  }
+    }
 
   .nav-flex {
       display: flex;
