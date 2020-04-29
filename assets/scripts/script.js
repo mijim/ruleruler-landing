@@ -398,7 +398,7 @@ export const executeScript = () => {
   .nav-table {
       width: 100%;
       margin-top: 16px;
-      margin-left: 16px;
+      margin-left: 10px;
   }
 
   .nav-table th {
@@ -436,7 +436,7 @@ export const executeScript = () => {
   }
 
   .nav-table-circle-container {
-    margin-left: 12px;
+    margin-left: 0px;
     margin-top: -18px;
     height: 10px;
     width: 0px;
@@ -519,7 +519,7 @@ export const executeScript = () => {
                                 <div class="nav-table-title">
                                     RGBA
                                 </div>
-                                <div style="width:100px">
+                                <div style="width:130px">
                                     ${values.color.replace('rgb(', '').replace('rgba(', '').replace(')', '')}
                                 </div>
                                 <div class="nav-table-circle-container">
