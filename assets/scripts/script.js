@@ -83,7 +83,7 @@ export const executeScript = () => {
 
   window.addEventListener("keydown", ev => {
     if (!opened) return;
-    if (ev.key.toLowerCase() === "c") {
+    if (ev.key.toLowerCase() === "c" && (ev.metaKey || ev.ctrlKey)) {
       copyTextToClipboard(`
     font-family: ${cFamily};
     font-size: ${cSize};
@@ -503,6 +503,7 @@ export const executeScript = () => {
 
 
   function getRulerNav(values) {
+    const isMac = navigator.appVersion.indexOf("Mac") != -1;
     return `
   <div class="nav-container">
         <div class="nav-flex">
@@ -652,7 +653,7 @@ export const executeScript = () => {
                     for measures lovers.
                 </div>
                 <div class="nav-title-tool">
-                    Press ⌘+C
+                  ${isMac ? 'Press ⌘+C' : 'Press Ctrl+C'}
                 </div>
                 <div class="nav-title-sub">
                     for copy css
