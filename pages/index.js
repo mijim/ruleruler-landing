@@ -4,7 +4,6 @@ import MainContainer from './index-style';
 import { images } from '../assets/icons';
 import { executeScript } from '../assets/scripts/script';
 import anime from 'animejs';
-
 export default function Home() {
   const [showFixedNav, setShowFixedNav] = useState(false);
   const [showGlitchEffect, setShowGlitchEffect] = useState(false);
@@ -19,6 +18,12 @@ export default function Home() {
       executeScript();
       window.showBoxSizes(false);
       pluginNav = document.getElementById('top-banner');
+      anime({
+        targets: 'body',
+        opacity: [0, 1],
+        easing: 'easeInOutExpo',
+        duration: 1500,
+      });
     }, false);
   }, []);
 
@@ -122,7 +127,7 @@ export default function Home() {
   }
 
   return (
-    <body style={{ margin: 0, overflowX: 'hidden' }}>
+    <body style={{ margin: 0, opacity: 0, overflowX: 'hidden' }}>
       <MainContainer>
         <div className="head-container">
           <div className="title-container">
