@@ -54,7 +54,6 @@ export default function Home() {
           });
         }
       } else if (pluginNav && window.scrollY >= 200 && pluginSetted) {
-        console.log('FUERA');
         pluginSetted = false;
         anime({
           targets: '#top-banner',
@@ -149,7 +148,7 @@ export default function Home() {
                 {images.download()}
               </div>
               <div className="title-right-item__contact">
-                {'CHARLEMOS'}
+                {'CONTACT US'}
               </div>
             </div>
           </div>
@@ -157,11 +156,11 @@ export default function Home() {
           <div className="head-container__divider-2" />
 
           <div className="main-title-container">
-            {'Para los amantes de las medidas, desarrolladores y diseñadores.'}
+            {'For those who love measures, developers and designers.'}
           </div>
 
           <div className="subtitle-container">
-            {'Visualice las propieades y medidas de los objetos, en el navegador.'}
+            {'View properties and measurements of web elements'}
           </div>
 
           <div className="bottom-container" >
@@ -170,7 +169,7 @@ export default function Home() {
                 window.scroll({ left: 0, top: 650, behavior: 'smooth' })
               }}>
                 {images.live()}
-                {'PRUEBA EN VIVO'}
+                {'LIVE TEST'}
               </a>
               <div className="bottom-container__download">
                 {'DOWNLOAD'}
@@ -206,7 +205,7 @@ export default function Home() {
                   {images.download()}
                 </div>
                 <div className="title-right-item__contact">
-                  {'CHARLEMOS'}
+                  {"LET'S TALK"}
                 </div>
               </div>
             </div>
@@ -344,13 +343,13 @@ export default function Home() {
                 {images.chromeLogo()}
               </div>
               <div className="bottom-fotter__top__right-item__text">
-                {'Disponible para Google Chrome'}
+                {'Available for Google Chrome'}
               </div>
             </div>
           </div>
           <div className="bottom-fotter__bottom">
             <div className="bottom-fotter__bottom__text">
-              {'Gracias a el equipo de Aluxion Labs, si te interesa charlar sobre tecnología, diseño o negocio puedes escribirnos'}
+              {'Thanks to the Aluxion Labs team, if you are interested in chatting about technology, design or business, you can write to us.'}
             </div>
             🧑🏼‍💻👨🏿‍💻
           </div>
