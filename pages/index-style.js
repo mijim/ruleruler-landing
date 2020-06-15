@@ -6,6 +6,13 @@ const MainContainer = styled.div`
         position: absolute;
         top: 506px;
     }
+
+    .tablet-advice-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
     .head-container {
         z-index: 10;
         height: 562px;
@@ -934,6 +941,20 @@ skew to change the 'thickness' of the glitch.*/
                 transform: skew(4deg);
             }
         }
+
+    @media (max-width: 1024px) {
+        .bottom-fotter {
+            position: fixed;
+            bottom: -10px;
+        }
+    }
+
+    @media (max-width: 764px) {
+        .bottom-fotter__top__right-item__text {
+            display: none;
+        }
+    }
+
 `;
 
 export default MainContainer;
