@@ -88,7 +88,7 @@ export const executeScript = () => {
     font-family: ${cFamily};
     font-size: ${cSize};
     font-weight: ${cWeight};
-    color: ${cColor};
+    color: #${rgba2hex(cColor)};
     `);
     }
     // if (ev.key.toLowerCase() === "escape") {
@@ -308,7 +308,10 @@ export const executeScript = () => {
       margin-left: 4px;
       letter-spacing: 0.04em;
   }
-
+  
+  .thin-weight {
+    font-weight: 200;
+  }
   .nav-title-sub {
       font-size: 10px;
       line-height: 16px;
@@ -529,10 +532,10 @@ export const executeScript = () => {
                         <td>
                             <div class="nav-table-flex">
                                 <div class="nav-table-title">
-                                    RGBA
+                                    HEX
                                 </div>
-                                <div style="width:130px">
-                                    ${values.color.replace('rgb(', '').replace('rgba(', '').replace(')', '')}
+                                <div style="width:100px">
+                                  ${rgba2hex(values.color)}
                                 </div>
                                 <div class="nav-table-circle-container">
                                 <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -664,7 +667,7 @@ export const executeScript = () => {
                 <div class="nav-title-sub">
                     By
                 </div>
-                <div class="nav-title-main">
+                <div class="nav-title-main thin-weight">
                     ALUXION
                 </div>
             </div>
@@ -1478,4 +1481,25 @@ export const executeScript = () => {
   }
 }
 
+function rgba2hex(orig) {
+  var a, isPercent,
+    rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
+    alpha = (rgb && rgb[4] || "").trim(),
+    hex = rgb ?
+      (rgb[1] | 1 << 8).toString(16).slice(1) +
+      (rgb[2] | 1 << 8).toString(16).slice(1) +
+      (rgb[3] | 1 << 8).toString(16).slice(1) : orig;
 
+  if (alpha !== "") {
+    a = alpha;
+  } else {
+    a = 0o1;
+  }
+  // multiply before convert to HEX
+  a = ((a * 255) | 1 << 8).toString(16).slice(1)
+  if (a !== 'ff') {
+    hex = hex + a;
+  }
+
+  return hex.toUpperCase();
+}
