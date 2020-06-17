@@ -131,6 +131,10 @@ export default function Home() {
     );
   }
 
+  const openInstall = () => {
+    window.open('https://chrome.google.com/webstore/detail/ruleruler/ghcmdbcpgmkalnkmnnjiehggdgimlmhi');
+  }
+
   return (
     <body style={{ margin: 0, opacity: size.width > 1024 ? 0 : 1, overflowX: 'hidden' }}>
       <MainContainer>
@@ -152,12 +156,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="title-right-item">
-                  <div className="title-right-item__download">
+                  <div className="title-right-item__download" onClick={() => openInstall()}>
                     {images.download()}
                   </div>
-                  <div className="title-right-item__contact">
+                  {/* <div className="title-right-item__contact">
                     {'CONTACT US'}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="head-container__divider-1" />
@@ -179,8 +183,8 @@ export default function Home() {
                     {images.live()}
                     {'LIVE TEST'}
                   </a>
-                  <div className="bottom-container__download">
-                    {'DOWNLOAD'}
+                  <div className="bottom-container__download" onClick={() => openInstall()}>
+                    {'INSTALL'}
                   </div>
                 </div>
                 <div className="bottom_container__logo">
@@ -323,8 +327,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="top-fotter__buttons">
-                <div className="top-fotter__buttons__button">
-                  {'DOWNLOAD NOW'}
+                <div className="top-fotter__buttons__button" onClick={() => openInstall()}>
+                  {'INSTALL'}
                 </div>
               </div>
 
