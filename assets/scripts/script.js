@@ -1,4 +1,3 @@
-
 export const executeScript = () => {
   const mainContainer = document.createElement("div");
   let mouseMove = null;
@@ -505,7 +504,6 @@ export const executeScript = () => {
 
   let elementsDetected = null;
 
-
   function getRulerNav(values) {
     const isMac = navigator.appVersion.indexOf("Mac") != -1;
     return `
@@ -553,7 +551,9 @@ export const executeScript = () => {
                                 <rect x="34" y="34" width="16" height="16" rx="8" transform="rotate(180 34 34)" fill="url(#paint4_linear)"/>
                                 </g>
                                 <rect x="33.1111" y="33.1112" width="14.2222" height="14.2222" rx="7.11111" transform="rotate(180 33.1111 33.1112)" fill="url(#paint5_linear)"/>
-                                <rect x="31" y="31" width="10" height="10" rx="5" transform="rotate(180 31 31)" fill="${values.color}"/>
+                                <rect x="31" y="31" width="10" height="10" rx="5" transform="rotate(180 31 31)" fill="${
+                                  values.color
+                                }"/>
                                 <rect x="30.5" y="30.5" width="9" height="9" rx="4.5" transform="rotate(180 30.5 30.5)" stroke="black" stroke-opacity="0.1"/>
                                 <defs>
                                 <filter id="filter0_dd" x="0.777858" y="0.777858" width="50.4444" height="50.4444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -640,7 +640,12 @@ export const executeScript = () => {
                         </td>
                         <td>
                             <div>
-                              ${(values.fontFamily.length >= '18' ? values.fontFamily.substr(0, 16) + '...' : values.fontFamily).replace('"', '').replace('"', '')}
+                              ${(values.fontFamily.length >= "18"
+                                ? values.fontFamily.substr(0, 16) + "..."
+                                : values.fontFamily
+                              )
+                                .replace('"', "")
+                                .replace('"', "")}
                             </div>
                         </td>
                     </tr>
@@ -657,7 +662,7 @@ export const executeScript = () => {
                     for measures lovers.
                 </div>
                 <div class="nav-title-tool">
-                  ${isMac ? 'Press ⌘+C' : 'Press Ctrl+C'}
+                  ${isMac ? "Press ⌘+C" : "Press Ctrl+C"}
                 </div>
                 <div class="nav-title-sub">
                     for copy css
@@ -668,18 +673,18 @@ export const executeScript = () => {
                     By
                 </div>
                 <div class="nav-title-main thin-weight">
-                    ALUXION
+                    MJB
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`;
   }
 
   let showLines = false;
-  window.showLines = (show) => {
+  window.showLines = show => {
     showLines = show;
     if (show) {
-      document.head.appendChild(stylePointer)
+      document.head.appendChild(stylePointer);
       mainContainer.appendChild(leftText);
       mainContainer.appendChild(topText);
 
@@ -709,7 +714,7 @@ export const executeScript = () => {
       mainContainer.appendChild(insideRightLine);
       mainContainer.appendChild(insideRightText);
     } else if (leftText.parentElement === mainContainer) {
-      document.head.removeChild(stylePointer)
+      document.head.removeChild(stylePointer);
 
       mainContainer.removeChild(leftText);
       mainContainer.removeChild(topText);
@@ -740,9 +745,9 @@ export const executeScript = () => {
       mainContainer.removeChild(insideRightLine);
       mainContainer.removeChild(insideRightText);
     }
-  }
+  };
 
-  window.showBoxSizes = (show) => {
+  window.showBoxSizes = show => {
     opened = true;
 
     document.head.appendChild(style);
@@ -750,9 +755,6 @@ export const executeScript = () => {
     mainContainer.appendChild(topBanner);
 
     //window.showLines(false);
-
-
-
 
     window.checked = !window.checked;
 
@@ -815,7 +817,7 @@ export const executeScript = () => {
         timeout = setTimeout(() => {
           const topElement =
             elementsDetected.getBoundingClientRect().top >
-              elem.getBoundingClientRect().top
+            elem.getBoundingClientRect().top
               ? elem
               : elementsDetected;
 
@@ -824,7 +826,7 @@ export const executeScript = () => {
 
           const leftElement =
             elementsDetected.getBoundingClientRect().left >
-              elem.getBoundingClientRect().left
+            elem.getBoundingClientRect().left
               ? elem
               : elementsDetected;
 
@@ -843,11 +845,11 @@ export const executeScript = () => {
             (leftElement.getBoundingClientRect().left - 1 <
               rightElement.getBoundingClientRect().left &&
               leftElement.getBoundingClientRect().right + 1 >
-              rightElement.getBoundingClientRect().left) ||
+                rightElement.getBoundingClientRect().left) ||
             (topElement.getBoundingClientRect().top - 1 <
               bottomElement.getBoundingClientRect().top &&
               topElement.getBoundingClientRect().bottom + 1 >
-              bottomElement.getBoundingClientRect().top);
+                bottomElement.getBoundingClientRect().top);
 
           if (!isIntersected && topElement) {
             verticalLine.style.top = `${topV + 2}px`;
@@ -856,28 +858,29 @@ export const executeScript = () => {
 
             verticalLineDots.style.top = `${
               topElement === elem
-                ? topElement.getBoundingClientRect().top + topElement.offsetHeight
+                ? topElement.getBoundingClientRect().top +
+                  topElement.offsetHeight
                 : topElement.getBoundingClientRect().top +
-                topElement.offsetHeight / 2
-              }px`;
+                  topElement.offsetHeight / 2
+            }px`;
             verticalLineDots.style.left = `${
               leftElement === elem
                 ? elem.getBoundingClientRect().right
                 : elem.getBoundingClientRect().left
-              }px`;
+            }px`;
 
             horizontalLineDots.style.top = `${
               topElement === elem
                 ? elem.getBoundingClientRect().bottom
                 : elem.getBoundingClientRect().top
-              }px`;
+            }px`;
             horizontalLineDots.style.left = `${
               leftElement === elem
                 ? leftElement.getBoundingClientRect().left +
-                leftElement.offsetWidth
+                  leftElement.offsetWidth
                 : leftElement.getBoundingClientRect().left +
-                leftElement.offsetWidth / 2
-              }px`;
+                  leftElement.offsetWidth / 2
+            }px`;
 
             horizontalLine.style.top = `${topH +
               elementsDetected.offsetHeight / 2}px`;
@@ -885,18 +888,20 @@ export const executeScript = () => {
 
             const distanceHeight =
               bottomElement.getBoundingClientRect().top -
-              (topElement.getBoundingClientRect().top + topElement.offsetHeight);
+              (topElement.getBoundingClientRect().top +
+                topElement.offsetHeight);
 
             const distanceWidth = Math.abs(
               rightElement.getBoundingClientRect().left -
-              (leftElement.getBoundingClientRect().left +
-                leftElement.offsetWidth)
+                (leftElement.getBoundingClientRect().left +
+                  leftElement.offsetWidth)
             );
 
             const lineDistanceHeight =
               bottomElement.getBoundingClientRect().top -
               4 -
-              (topElement.getBoundingClientRect().top + topElement.offsetHeight);
+              (topElement.getBoundingClientRect().top +
+                topElement.offsetHeight);
 
             const lineDistanceWidth =
               rightElement.getBoundingClientRect().left -
@@ -955,7 +960,7 @@ export const executeScript = () => {
 
             horizontalLine.style.left = `${
               leftElement.getBoundingClientRect().right
-              }px`;
+            }px`;
             horizontalLine.style.top = `${Math.min(
               topElement.getBoundingClientRect().bottom,
               bottomElement.getBoundingClientRect().bottom
@@ -968,7 +973,7 @@ export const executeScript = () => {
 
             verticalLine.style.top = `${
               topElement.getBoundingClientRect().bottom
-              }px`;
+            }px`;
 
             verticalLine.style.height = `${lineDistanceHeight}px`;
             horizontalLine.style.width = `${lineDistanceWidth}px`;
@@ -992,7 +997,9 @@ export const executeScript = () => {
             ) + 5}px`;
 
             widthDistanceText.innerHTML = `${Math.floor(lineDistanceWidth)}px`;
-            heightDistanceText.innerHTML = `${Math.floor(lineDistanceHeight)}px`;
+            heightDistanceText.innerHTML = `${Math.floor(
+              lineDistanceHeight
+            )}px`;
 
             let isInside = true;
 
@@ -1023,7 +1030,7 @@ export const executeScript = () => {
                 topElement.getBoundingClientRect().top;
               insideTopLine.style.top = `${
                 topElement.getBoundingClientRect().top
-                }px`;
+              }px`;
               insideTopLine.style.left = `${rightElement.getBoundingClientRect()
                 .left +
                 bottomElement.offsetWidth / 2}px`;
@@ -1042,7 +1049,7 @@ export const executeScript = () => {
                 bottomElement.getBoundingClientRect().bottom;
               insideBottomLine.style.top = `${
                 bottomElement.getBoundingClientRect().bottom
-                }px`;
+              }px`;
               insideBottomLine.style.left = `${rightElement.getBoundingClientRect()
                 .left +
                 bottomElement.offsetWidth / 2}px`;
@@ -1070,7 +1077,7 @@ export const executeScript = () => {
                 bottomElement.offsetHeight / 2}px`;
               insideLeftLine.style.left = `${
                 leftElement.getBoundingClientRect().left
-                }px`;
+              }px`;
               insideLeftLine.style.width = `${insideLeftDistance}px`;
               insideLeftText.innerHTML = `${Math.floor(insideLeftDistance)}px`;
               insideLeftText.style.top = `${bottomElement.getBoundingClientRect()
@@ -1081,7 +1088,10 @@ export const executeScript = () => {
                 leftElement.getBoundingClientRect().left +
                 insideLeftDistance / 2 -
                 5;
-              insideLeftText.style.left = `${Math.max(5, insideLeftTextLeft)}px`;
+              insideLeftText.style.left = `${Math.max(
+                5,
+                insideLeftTextLeft
+              )}px`;
 
               const insideRightDistance =
                 leftElement.getBoundingClientRect().right -
@@ -1091,9 +1101,11 @@ export const executeScript = () => {
                 bottomElement.offsetHeight / 2}px`;
               insideRightLine.style.left = `${
                 rightElement.getBoundingClientRect().right
-                }px`;
+              }px`;
               insideRightLine.style.width = `${insideRightDistance}px`;
-              insideRightText.innerHTML = `${Math.floor(insideRightDistance)}px`;
+              insideRightText.innerHTML = `${Math.floor(
+                insideRightDistance
+              )}px`;
               insideRightText.style.top = `${bottomElement.getBoundingClientRect()
                 .top +
                 bottomElement.offsetHeight / 2 +
@@ -1166,7 +1178,7 @@ export const executeScript = () => {
           ev.preventDefault();
         }
         if (elementsDetected) elementsDetected.style.boxShadow = "";
-        validElement
+        validElement;
         if (!isValidElement(elem)) return;
         elementsDetected = elem;
 
@@ -1177,34 +1189,35 @@ export const executeScript = () => {
 
         boxSelectTopLine.style.top = `${
           elementsDetected.getBoundingClientRect().top
-          }px`;
+        }px`;
         boxSelectTopLine.style.left = `${
           elementsDetected.getBoundingClientRect().left
-          }px`;
+        }px`;
         boxSelectTopLine.style.width = `${elementsDetected.offsetWidth}px`;
 
         boxSelectBottomLine.style.top = `${
           elementsDetected.getBoundingClientRect().bottom
-          }px`;
+        }px`;
         boxSelectBottomLine.style.left = `${
           elementsDetected.getBoundingClientRect().left
-          }px`;
-        boxSelectBottomLine.style.width = `${elementsDetected.offsetWidth + 2}px`;
+        }px`;
+        boxSelectBottomLine.style.width = `${elementsDetected.offsetWidth +
+          2}px`;
 
         boxSelectLeftLine.style.top = `${
           elementsDetected.getBoundingClientRect().top
-          }px`;
+        }px`;
         boxSelectLeftLine.style.left = `${
           elementsDetected.getBoundingClientRect().left
-          }px`;
+        }px`;
         boxSelectLeftLine.style.height = `${elementsDetected.offsetHeight}px`;
 
         boxSelectRightLine.style.top = `${
           elementsDetected.getBoundingClientRect().top
-          }px`;
+        }px`;
         boxSelectRightLine.style.left = `${
           elementsDetected.getBoundingClientRect().right
-          }px`;
+        }px`;
         boxSelectRightLine.style.height = `${elementsDetected.offsetHeight +
           2}px`;
       };
@@ -1213,17 +1226,17 @@ export const executeScript = () => {
       elementsDetected &&
         elementsDetected.removeEventListener("click", clickHandler);
 
-      validElement = isValidElement(elem)
-      validElement &&
-        showMeasures(elem);
+      validElement = isValidElement(elem);
+      validElement && showMeasures(elem);
     };
     document.body.addEventListener("mousemove", mouseMove);
-  }
+  };
 
   let previousElem = null;
 
   function isValidElement(checkElement) {
-    return checkElement !== verticalLine &&
+    return (
+      checkElement !== verticalLine &&
       checkElement !== verticalLineDots &&
       checkElement !== horizontalLine &&
       checkElement !== horizontalLineDots &&
@@ -1235,13 +1248,19 @@ export const executeScript = () => {
       checkElement.className !== "size-text-tiny" &&
       checkElement.className !== "size-text" &&
       checkElement.className !== "size-text-container" &&
-      checkElement;
+      checkElement
+    );
   }
 
   function showMeasures(elem) {
     const elemHeight = elem.offsetHeight;
     const elemWidth = elem.offsetWidth;
-    if (!elemWidth === 0 || !elemHeight || elemHeight === 0 || elemWidth === 0) {
+    if (
+      !elemWidth === 0 ||
+      !elemHeight ||
+      elemHeight === 0 ||
+      elemWidth === 0
+    ) {
       return;
     }
     previousElem = elem;
@@ -1256,7 +1275,7 @@ export const executeScript = () => {
       fontWeight: cWeight,
       fontFamily: cFamily,
       color: cColor
-    }
+    };
 
     topBanner.innerHTML = getRulerNav(styleValues);
 
@@ -1305,7 +1324,7 @@ export const executeScript = () => {
     document.body.removeEventListener("mousemove", mouseMove, true);
     //document.head.removeChild(style);
     mainContainer.innerHTML = "";
-  }
+  };
 
   var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
@@ -1363,20 +1382,20 @@ export const executeScript = () => {
 
     try {
       var successful = document.execCommand("copy");
-    } catch (err) { }
+    } catch (err) {}
 
     document.body.removeChild(textArea);
   }
 
   let showCopiedAdviceTimeout;
   function showCopiedAdvice() {
-    const tools = document.getElementsByClassName('nav-title-tool');
-    const titleSub = document.getElementsByClassName('nav-title-sub');
+    const tools = document.getElementsByClassName("nav-title-tool");
+    const titleSub = document.getElementsByClassName("nav-title-sub");
     if (tools[0] && titleSub[1]) {
       const previousText = tools[0].innerHTML;
       const previousTitle = titleSub[1].innerHTML;
-      tools[0].innerHTML = '👍 Copiado con éxito';
-      titleSub[1].innerHTML = '';
+      tools[0].innerHTML = "👍 Copiado con éxito";
+      titleSub[1].innerHTML = "";
       clearTimeout(showCopiedAdviceTimeout);
       showCopiedAdviceTimeout = setTimeout(() => {
         tools[0].innerHTML = previousText;
@@ -1384,7 +1403,6 @@ export const executeScript = () => {
       }, 3000);
     }
   }
-
 
   function elementInViewport(el) {
     var top = el.offsetTop;
@@ -1406,7 +1424,7 @@ export const executeScript = () => {
     );
   }
 
-  var dragItem = topBanner
+  var dragItem = topBanner;
 
   var active = false;
   var currentX;
@@ -1415,7 +1433,6 @@ export const executeScript = () => {
   var initialY;
   var xOffset = 0;
   var yOffset = 0;
-
 
   document.body.addEventListener("mousedown", dragStart, true);
   document.body.addEventListener("mouseup", dragEnd, true);
@@ -1430,10 +1447,12 @@ export const executeScript = () => {
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
-    if (e.target === dragItem ||
-      e.target.className === 'title-font' ||
-      e.target.className === 'text-font' ||
-      e.target.className === 'container-font') {
+    if (
+      e.target === dragItem ||
+      e.target.className === "title-font" ||
+      e.target.className === "text-font" ||
+      e.target.className === "container-font"
+    ) {
       active = true;
     }
   }
@@ -1442,7 +1461,8 @@ export const executeScript = () => {
     enableScroll();
     initialX = currentX;
     initialY = currentY;
-    dragItem.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)"
+    dragItem.style.transform =
+      "translate3d(" + currentX + "px, " + currentY + "px, 0)";
     active = false;
   }
 
@@ -1453,11 +1473,10 @@ export const executeScript = () => {
     initialY = 0;
     xOffset = 0;
     yOffset = 0;
-  }
+  };
 
   function drag(e) {
     if (active) {
-
       e.preventDefault();
 
       if (e.type === "touchmove") {
@@ -1479,16 +1498,20 @@ export const executeScript = () => {
     el.style.transformOrigin = xPos + " " + yPos;
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   }
-}
+};
 
 function rgba2hex(orig) {
-  var a, isPercent,
-    rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
-    alpha = (rgb && rgb[4] || "").trim(),
-    hex = rgb ?
-      (rgb[1] | 1 << 8).toString(16).slice(1) +
-      (rgb[2] | 1 << 8).toString(16).slice(1) +
-      (rgb[3] | 1 << 8).toString(16).slice(1) : orig;
+  var a,
+    isPercent,
+    rgb = orig
+      .replace(/\s/g, "")
+      .match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
+    alpha = ((rgb && rgb[4]) || "").trim(),
+    hex = rgb
+      ? (rgb[1] | (1 << 8)).toString(16).slice(1) +
+        (rgb[2] | (1 << 8)).toString(16).slice(1) +
+        (rgb[3] | (1 << 8)).toString(16).slice(1)
+      : orig;
 
   if (alpha !== "") {
     a = alpha;
@@ -1496,8 +1519,8 @@ function rgba2hex(orig) {
     a = 0o1;
   }
   // multiply before convert to HEX
-  a = ((a * 255) | 1 << 8).toString(16).slice(1)
-  if (a !== 'ff') {
+  a = ((a * 255) | (1 << 8)).toString(16).slice(1);
+  if (a !== "ff") {
     hex = hex + a;
   }
 

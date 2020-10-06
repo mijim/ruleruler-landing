@@ -1,10 +1,10 @@
-import Head from 'next/head'
-import { useState, useEffect } from 'react';
-import MainContainer from './index-style';
-import { images } from '../assets/icons';
-import { executeScript } from '../assets/scripts/script';
-import { useWindowSize } from '../src/hooks/window-size';
-import anime from 'animejs';
+import Head from "next/head";
+import { useState, useEffect } from "react";
+import MainContainer from "./index-style";
+import { images } from "../assets/icons";
+import { executeScript } from "../assets/scripts/script";
+import { useWindowSize } from "../src/hooks/window-size";
+import anime from "animejs";
 
 export default function Home() {
   const [showFixedNav, setShowFixedNav] = useState(false);
@@ -18,34 +18,38 @@ export default function Home() {
   useEffect(() => {
     if (size.width > 1024) {
       window.scrollTo(0, 0);
-      window.addEventListener('load', (ev) => {
-        setWindowLoaded(true)
-        executeScript();
-        window.showBoxSizes(false);
-        pluginNav = document.getElementById('top-banner');
-        anime({
-          targets: 'body',
-          opacity: [0, 1],
-          easing: 'easeInOutExpo',
-          duration: 1500,
-        });
-      }, false);
+      window.addEventListener(
+        "load",
+        ev => {
+          setWindowLoaded(true);
+          executeScript();
+          window.showBoxSizes(false);
+          pluginNav = document.getElementById("top-banner");
+          anime({
+            targets: "body",
+            opacity: [0, 1],
+            easing: "easeInOutExpo",
+            duration: 1500
+          });
+        },
+        false
+      );
     }
   }, []);
 
   useEffect(() => {
     let pluginSetted = true;
-    window.addEventListener('scroll', (ev) => {
+    window.addEventListener("scroll", ev => {
       if (pluginNav && window.scrollY < 200) {
         window.resetDragValues();
-        document.getElementById('top-banner').style.transform = ''
+        document.getElementById("top-banner").style.transform = "";
         if (!pluginSetted) {
           anime({
-            targets: '#top-banner',
+            targets: "#top-banner",
             top: 507.5 - window.scrollY / 1.2,
-            easing: 'easeInOutExpo',
+            easing: "easeInOutExpo",
             duration: 500,
-            update: (anim) => {
+            update: anim => {
               if (anim.progress === 100) {
                 pluginSetted = true;
               }
@@ -53,23 +57,27 @@ export default function Home() {
           });
         } else {
           anime({
-            targets: '#top-banner',
+            targets: "#top-banner",
             top: 507.5 - window.scrollY / 1.2,
             duration: 0,
-            easing: 'linear'
+            easing: "linear"
           });
         }
       } else if (pluginNav && window.scrollY >= 200 && pluginSetted) {
         pluginSetted = false;
         anime({
-          targets: '#top-banner',
+          targets: "#top-banner",
           top: [window.innerHeight - 150],
-          easing: 'easeInOutExpo',
-          duration: 500,
+          easing: "easeInOutExpo",
+          duration: 500
         });
       }
 
-      if (window.scrollY >= 600 && !showFixedNav && document.body.scrollHeight - (window.scrollY + window.innerHeight) > 500) {
+      if (
+        window.scrollY >= 600 &&
+        !showFixedNav &&
+        document.body.scrollHeight - (window.scrollY + window.innerHeight) > 500
+      ) {
         setShowFixedNav(true);
         window.showLines && window.showLines(true);
       }
@@ -84,10 +92,10 @@ export default function Home() {
           setShowGlitchEffect(true);
           window.showLines && window.showLines(false);
           anime({
-            targets: '#top-banner',
+            targets: "#top-banner",
             opacity: 0,
             duration: 0.4,
-            easing: 'easeInOutExpo'
+            easing: "easeInOutExpo"
           });
           setTimeout(() => {
             setShowGlitchEffect(false);
@@ -99,19 +107,18 @@ export default function Home() {
         if (showGlitchEffect && !elementInViewport(glitchRef.current)) {
           window.showLines && window.showLines(true);
           anime({
-            targets: '#top-banner',
+            targets: "#top-banner",
             opacity: 1,
             duration: 0.4,
-            easing: 'easeInOutExpo'
+            easing: "easeInOutExpo"
           });
-          setShowGlitchEffect(false)
+          setShowGlitchEffect(false);
         }
       }
-
     });
   }, [showFixedNav, showGlitchEffect]);
 
-  const elementInViewport = (el) => {
+  const elementInViewport = el => {
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -126,17 +133,25 @@ export default function Home() {
     return (
       top >= window.pageYOffset &&
       left >= window.pageXOffset &&
-      (top + height) <= (window.pageYOffset + window.innerHeight) &&
-      (left + width) <= (window.pageXOffset + window.innerWidth)
+      top + height <= window.pageYOffset + window.innerHeight &&
+      left + width <= window.pageXOffset + window.innerWidth
     );
-  }
+  };
 
   const openInstall = () => {
-    window.open('https://chrome.google.com/webstore/detail/ruleruler/ghcmdbcpgmkalnkmnnjiehggdgimlmhi');
-  }
+    window.open(
+      "https://chrome.google.com/webstore/detail/ruleruler/ghcmdbcpgmkalnkmnnjiehggdgimlmhi"
+    );
+  };
 
   return (
-    <body style={{ margin: 0, opacity: size.width > 1024 ? 0 : 1, overflowX: 'hidden' }}>
+    <body
+      style={{
+        margin: 0,
+        opacity: size.width > 1024 ? 0 : 1,
+        overflowX: "hidden"
+      }}
+    >
       <MainContainer>
         {size.width > 1024 && (
           <>
@@ -146,17 +161,18 @@ export default function Home() {
                   {/* <img src={images.logo} /> */}
                   <div className="title-left-item__title">
                     {images.logo()}
-                    <div className="title-left-item__title__info">
-                      {'BETA'}
-                    </div>
+                    <div className="title-left-item__title__info">{"BETA"}</div>
                   </div>
 
                   <div className="title-left-item__subtitle">
-                    {'For measures lovers.'}
+                    {"For measures lovers."}
                   </div>
                 </div>
                 <div className="title-right-item">
-                  <div className="title-right-item__download" onClick={() => openInstall()}>
+                  <div
+                    className="title-right-item__download"
+                    onClick={() => openInstall()}
+                  >
                     {images.download()}
                   </div>
                   {/* <div className="title-right-item__contact">
@@ -168,48 +184,59 @@ export default function Home() {
               <div className="head-container__divider-2" />
 
               <div className="main-title-container">
-                {'For those who love measures, developers and designers.'}
+                {"For those who love measures, developers and designers."}
               </div>
 
               <div className="subtitle-container">
-                {'View properties and measurements of web elements'}
+                {"View properties and measurements of web elements"}
               </div>
 
-              <div className="bottom-container" >
+              <div className="bottom-container">
                 <div className="bottom-container__right">
-                  <a className="bottom-container__live" onClick={(ev) => {
-                    window.scroll({ left: 0, top: 650, behavior: 'smooth' })
-                  }}>
+                  <a
+                    className="bottom-container__live"
+                    onClick={ev => {
+                      window.scroll({ left: 0, top: 650, behavior: "smooth" });
+                    }}
+                  >
                     {images.live()}
-                    {'LIVE TEST'}
+                    {"LIVE TEST"}
                   </a>
-                  <div className="bottom-container__download" onClick={() => openInstall()}>
-                    {'INSTALL'}
+                  <div
+                    className="bottom-container__download"
+                    onClick={() => openInstall()}
+                  >
+                    {"INSTALL"}
                   </div>
                 </div>
                 <div className="bottom_container__logo">
-                  <img src={'/static/light-logo.svg'} />
+                  <img src={"/static/light-logo.svg"} />
                   {/* {images.lightLogo()} */}
                 </div>
               </div>
             </div>
-            <div className="negative-header">
-              {images.negativeHeader()}
-            </div>
+            <div className="negative-header">{images.negativeHeader()}</div>
             <div className="demo-container">
-              <div className="title-container" style={{ opacity: showFixedNav ? 1 : 0, position: showFixedNav ? 'fixed' : 'absolute', top: showFixedNav ? 0 : '100vh' }}>
+              <div
+                className="title-container"
+                style={{
+                  opacity: showFixedNav ? 1 : 0,
+                  position: showFixedNav ? "fixed" : "absolute",
+                  top: showFixedNav ? 0 : "100vh"
+                }}
+              >
                 <div className="title-container-top">
                   <div className="title-left-item">
                     {/* <img src={images.logo} /> */}
                     <div className="title-left-item__title">
                       {images.logoBlack()}
                       <div className="title-left-item__title__info">
-                        {'BETA'}
+                        {"BETA"}
                       </div>
                     </div>
 
                     <div className="title-left-item__subtitle">
-                      {'For measures lovers.'}
+                      {"For measures lovers."}
                     </div>
                   </div>
                   <div className="title-right-item">
@@ -222,27 +249,23 @@ export default function Home() {
                   </div>
                 </div>
 
-
                 <div className="title-container__divider-1" />
                 <div className="title-container__divider-2" />
               </div>
 
-
               <div className="demo-content">
                 <div className="demo-subtitle">
-                  {'From Wikipedia, the free encyclopedia'}
+                  {"From Wikipedia, the free encyclopedia"}
                 </div>
                 <div className="demo-top-text">
                   <div className="demo-top-text__title">
-                    <div>
-                      {'Imperial units'}
-                    </div>
-                    <div className="demo-content__top">
-                      {'RULERULER'}
-                    </div>
+                    <div>{"Imperial units"}</div>
+                    <div className="demo-content__top">{"RULERULER"}</div>
                   </div>
                   <div className="demo-top-text__text">
-                    {'The Imperial units or the Imperial system is a collection of measurement units. An Act of Parliament in 1824 created it from traditional English units. Commonwealth countries used this system from 1824 until they changed to the metric system. The imperial system is very similar to the American system but there are some differences.'}
+                    {
+                      "The Imperial units or the Imperial system is a collection of measurement units. An Act of Parliament in 1824 created it from traditional English units. Commonwealth countries used this system from 1824 until they changed to the metric system. The imperial system is very similar to the American system but there are some differences."
+                    }
                   </div>
                 </div>
 
@@ -254,53 +277,61 @@ export default function Home() {
                 <div className="demo-images-container">
                   <div className="demo-images-container__img width-100">
                     <div className="flex-100-right">
-                      <img src={'/static/sample1.png'} />
+                      <img src={"/static/sample1.png"} />
                     </div>
                     <div className="demo-images-container__img__title flex-100-right">
-                      {'Alexander Andrews'}
+                      {"Alexander Andrews"}
                     </div>
                     <div className="demo-images-container__img__back1">
-                      {'RULERULER'}
+                      {"RULERULER"}
                     </div>
                     <div className="demo-images-container__img__back2">
-                      {'RULERULER'}
+                      {"RULERULER"}
                     </div>
                   </div>
                   <div className="demo-images-container__img">
-                    <img src={'/static/sample2.png'} />
+                    <img src={"/static/sample2.png"} />
                     <div className="demo-images-container__img__title">
-                      {'Alexander Andrews'}
+                      {"Alexander Andrews"}
                     </div>
                   </div>
                 </div>
                 <div className="demo-title2">
                   <div className="demo-title2__left">
-                    {'The International System of Units is the standard modern form of the metric system. '}
+                    {
+                      "The International System of Units is the standard modern form of the metric system. "
+                    }
                   </div>
                   <div className="demo-title2__right">
-                    {'The metric system was created in France after the French Revolution in 1789.'}
+                    {
+                      "The metric system was created in France after the French Revolution in 1789."
+                    }
                   </div>
                 </div>
                 <div className="demo-main2">
                   <div className="demo-main2__left">
                     <div className="demo-main2__left__text">
-                      {'The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists.'}
-
+                      {
+                        "The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists."
+                      }
                     </div>
                     <div className="demo-main2__left__img">
-                      <img src={'/static/sample3.png'} />
+                      <img src={"/static/sample3.png"} />
                     </div>
                     <div className="demo-main2__left__imp-pie">
-                      {'Alexander Andrews'}
+                      {"Alexander Andrews"}
                     </div>
-
                   </div>
                   <div className="demo-main2__right">
                     <div className="demo-main2__right__text1">
-                      {'The metric system was created in France after the French Revolution in 1789. The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists.'}
+                      {
+                        "The metric system was created in France after the French Revolution in 1789. The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists."
+                      }
                     </div>
                     <div className="demo-main2__right__text2">
-                      {'The metric system was created in France after the French Revolution in 1789. The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists.'}
+                      {
+                        "The metric system was created in France after the French Revolution in 1789. The original system only had two standard units, the kilogram and the metre. The metric system became popular amongst scientists."
+                      }
                     </div>
                   </div>
                 </div>
@@ -308,30 +339,34 @@ export default function Home() {
             </div>
             <div className="top-fotter">
               <div className="top-fotter__title">
-                <div className={`top-fotter__title__main ${showGlitchEffect ? 'glitch-effect' : ''} `} data-text={'RULERULER'} ref={glitchRef}>
-                  {'RULERULER'}
+                <div
+                  className={`top-fotter__title__main ${
+                    showGlitchEffect ? "glitch-effect" : ""
+                  } `}
+                  data-text={"RULERULER"}
+                  ref={glitchRef}
+                >
+                  {"RULERULER"}
                 </div>
-                <div className="top-fotter__title__sub1">
-                  {'RULERULER'}
-                </div>
-                <div className="top-fotter__title__sub2">
-                  {'RULERULER'}
-                </div>
+                <div className="top-fotter__title__sub1">{"RULERULER"}</div>
+                <div className="top-fotter__title__sub2">{"RULERULER"}</div>
               </div>
               <div className="top-fotter__middle">
                 <div className="top-fotter__middle__left">
-                  {'For measures lovers.'}
+                  {"For measures lovers."}
                 </div>
                 <div className="top-fotter__middle__right">
-                  {'For measures lovers.'}
+                  {"For measures lovers."}
                 </div>
               </div>
               <div className="top-fotter__buttons">
-                <div className="top-fotter__buttons__button" onClick={() => openInstall()}>
-                  {'INSTALL'}
+                <div
+                  className="top-fotter__buttons__button"
+                  onClick={() => openInstall()}
+                >
+                  {"INSTALL"}
                 </div>
               </div>
-
             </div>
             <div className="divider-2" />
             <div className="divider-1" />
@@ -341,21 +376,21 @@ export default function Home() {
         {size.width > 764 && size.width <= 1024 && (
           <>
             <div className="tablet-advice-container">
-              <img src={'/static/tablet-advice.svg'} />
+              <img src={"/static/tablet-advice.svg"} />
             </div>
             <div className="tablet-advice-container">
-              <img src={'/static/tablet-advice.svg'} />
+              <img src={"/static/tablet-advice.svg"} />
             </div>
             <div className="tablet-advice-container">
-              <img src={'/static/tablet-advice.svg'} />
+              <img src={"/static/tablet-advice.svg"} />
             </div>
           </>
         )}
 
         {size.width <= 764 && (
           <div>
-            <img src={'/static/mobile-advice.svg'} />
-            <img src={'/static/mobile-advice.svg'} />
+            <img src={"/static/mobile-advice.svg"} />
+            <img src={"/static/mobile-advice.svg"} />
           </div>
         )}
 
@@ -365,12 +400,12 @@ export default function Home() {
               <div className="bottom-fotter__top__left-item__title">
                 {images.logoBlack()}
                 <div className="bottom-fotter__top__left-item__title__info">
-                  {'BETA'}
+                  {"BETA"}
                 </div>
               </div>
 
               <div className="bottom-fotter__top__left-item__subtitle">
-                {'For measures lovers.'}
+                {"For measures lovers."}
               </div>
             </div>
 
@@ -379,18 +414,22 @@ export default function Home() {
                 {images.chromeLogo()}
               </div>
               <div className="bottom-fotter__top__right-item__text">
-                {'Available for Google Chrome'}
+                {"Available for Google Chrome"}
               </div>
             </div>
           </div>
           <div className="bottom-fotter__bottom">
             <div className="bottom-fotter__bottom__text">
-              {'Thanks to the Aluxion Labs team, if you are interested in chatting about technology, design or business, you can write to us.'}
+              <a href="mailto:migueljimenezbenajes@gmail.com">
+                {
+                  "If you are interested in chatting about technology, design or business, you can write me."
+                }
+              </a>
             </div>
-            🧑🏼‍💻👨🏿‍💻
+            🧑🏼‍💻
           </div>
         </div>
       </MainContainer>
     </body>
-  )
-} 
+  );
+}
