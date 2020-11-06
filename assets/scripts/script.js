@@ -805,12 +805,17 @@ export const executeScript = () => {
     widthDistanceText.className = "size-text";
 
     mouseMove = e => {
-      e.stopPropagation();
-      e.preventDefault();
-      e.stopImmediatePropagation();
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
 
       clearTimeout(timeout);
-      const elem = document.elementFromPoint(e.clientX, e.clientY);
+      const elem = document.elementFromPoint(
+        e ? e.clientX : 0,
+        e ? e.clientY : 0
+      );
       let validElement = isValidElement(elem);
 
       if (elementsDetected && validElement && elem) {
@@ -1230,6 +1235,7 @@ export const executeScript = () => {
       validElement && showMeasures(elem);
     };
     document.body.addEventListener("mousemove", mouseMove);
+    mouseMove();
   };
 
   let previousElem = null;

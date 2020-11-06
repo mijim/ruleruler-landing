@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 const MainContainer = styled.div`
     font-family: Inter;
+    a {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
     .negative-header {
         position: absolute;
         top: 506px;

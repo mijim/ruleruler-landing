@@ -18,24 +18,21 @@ export default function Home() {
   useEffect(() => {
     if (size.width > 1024) {
       window.scrollTo(0, 0);
-      window.addEventListener(
-        "load",
-        ev => {
-          setWindowLoaded(true);
-          executeScript();
-          window.showBoxSizes(false);
-          pluginNav = document.getElementById("top-banner");
-          anime({
-            targets: "body",
-            opacity: [0, 1],
-            easing: "easeInOutExpo",
-            duration: 1500
-          });
-        },
-        false
-      );
+      setWindowLoaded(true);
+      executeScript();
+      window.showBoxSizes(false);
+      pluginNav = document.getElementById("top-banner");
+      anime({
+        targets: "body",
+        opacity: [0, 1],
+        easing: "easeInOutExpo",
+        duration: 1500
+      });
+      document.body.style.overflowY = "scroll";
+    } else {
+      document.body.style.overflow = "hidden";
     }
-  }, []);
+  }, [size.width]);
 
   useEffect(() => {
     let pluginSetted = true;
@@ -94,6 +91,7 @@ export default function Home() {
           anime({
             targets: "#top-banner",
             opacity: 0,
+            left: -1000,
             duration: 0.4,
             easing: "easeInOutExpo"
           });
@@ -109,6 +107,7 @@ export default function Home() {
           anime({
             targets: "#top-banner",
             opacity: 1,
+            left: 35,
             duration: 0.4,
             easing: "easeInOutExpo"
           });
@@ -420,7 +419,7 @@ export default function Home() {
           </div>
           <div className="bottom-fotter__bottom">
             <div className="bottom-fotter__bottom__text">
-              <a href="mailto:migueljimenezbenajes@gmail.com">
+              <a href="https://migueljimenezbenajes.com/">
                 {
                   "If you are interested in chatting about technology, design or business, you can write me."
                 }
